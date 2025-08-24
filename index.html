@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sardar Limca - Premium Juice Bar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/65a44656-57d2-4e83-82b7-b502c697b0d8.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        
+        .hero-pattern {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(21, 128, 61, 0.2) 100%);
+        }
+        
+        .juice-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .juice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .flavor-image {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .juice-card:hover .flavor-image {
+            transform: scale(1.05);
+        }
+        
+        .order-btn {
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            transition: all 0.3s ease;
+        }
+        
+        .order-btn:hover {
+            background: linear-gradient(45deg, #16a34a, #15803d);
+            transform: scale(1.05);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #22c55e;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-green-800 bg-opacity-90 fixed w-full z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/47c92b84-1cda-4a80-98ea-94600e699e78.png" alt="Sardar Limca Logo - Modern juice bar logo with fresh fruit elements and vibrant green colors" class="h-10 w-10 rounded-full mr-2">
+                    <span class="text-white font-bold text-xl">Sardar Limca</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-green-300">Home</a>
+                    <a href="#about" class="nav-link text-white hover:text-green-300">About Us</a>
+                    <a href="#menu" class="nav-link text-white hover:text-green-300">Menu</a>
+                    <a href="#contact" class="nav-link text-white hover:text-green-300">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-green-900">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-white hover:bg-green-800 rounded">Home</a>
+                <a href="#about" class="block px-3 py-2 text-white hover:bg-green-800 rounded">About Us</a>
+                <a href="#menu" class="block px-3 py-2 text-white hover:bg-green-800 rounded">Menu</a>
+                <a href="#contact" class="block px-3 py-2 text-white hover:bg-green-800 rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 hero-pattern min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">
+                    Fresh & Natural<br>
+                    <span class="text-green-400">Juices</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-green-100">
+                    Experience the taste of nature with our premium fruit juices
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#menu" class="order-btn px-8 py-4 rounded-full text-white font-semibold text-lg">
+                        View Menu
+                    </a>
+                    <a href="#contact" class="border-2 border-green-400 px-8 py-4 rounded-full text-green-400 font-semibold text-lg hover:bg-green-400 hover:text-white transition-colors">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black bg-opacity-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 section-title">About Sardar Limca</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/babe7c6d-41d0-4682-a2cf-b6f2ee26558d.png" alt="Modern juice bar interior with fresh fruits display and happy customers enjoying drinks at Sardar Limca" class="rounded-lg shadow-2xl">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-green-300">Our Story</h3>
+                    <p class="text-lg mb-6 text-gray-200">
+                        Sardar Limca is a premium juice bar dedicated to serving the freshest and most delicious fruit juices in Sindh Khairpur. We believe in using only the highest quality ingredients to create refreshing beverages that delight our customers.
+                    </p>
+                    <p class="text-lg mb-6 text-gray-200">
+                        Our expert juice makers carefully craft each drink with love and attention to detail, ensuring every sip is a perfect blend of flavor and nutrition.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center p-4 bg-green-800 bg-opacity-50 rounded-lg">
+                            <i class="fas fa-leaf text-3xl text-green-400 mb-2"></i>
+                            <p class="font-semibold">100% Fresh</p>
+                        </div>
+                        <div class="text-center p-4 bg-green-800 bg-opacity-50 rounded-lg">
+                            <i class="fas fa-heart text-3xl text-green-400 mb-2"></i>
+                            <p class="font-semibold">Healthy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-black bg-opacity-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 section-title">Our Menu</h2>
+            <p class="text-center text-xl mb-12 text-green-200">Choose from our wide variety of refreshing flavors</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Juice Cards -->
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/68063098-a575-41a1-a48d-1cc9b9808f68.png" alt="Colorful cocktail juice with mixed fruits and mint leaves in a tall glass" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Cocktail</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2bf0f805-a0ce-4cfc-b702-dbf08c25d92e.png" alt="Refreshing mint margarita with lime slices and fresh mint leaves in a frosted glass" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Mint Margarita</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7429c019-c172-4f77-bff3-90cdb23743eb.png" alt="Fresh strawberry juice with whole strawberries and ice cubes in a clear glass" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Strawberry</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e1b87a84-ef56-48da-8531-51cef559e1bc.png" alt="Rich blueberry juice with fresh blueberries and mint garnish in a stylish glass" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Blueberry</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/92b868ac-4961-4a2f-aa6c-c35e6dfc9af2.png" alt="Tropical pineapple juice with pineapple slices and umbrella garnish" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Pineapple</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9ba2fcd8-5af5-47d8-bfb8-abf82567085d.png" alt="Fun bubble gum flavored juice with colorful bubbles and candy garnish" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Bubble Gum</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/98f457f5-2294-4587-b223-54cf23c8a120.png" alt="Fresh orange juice with orange slices and pulp visible in a tall glass" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Orange</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/65fa2145-2cb1-484f-abea-c1572a3879de.png" alt="Crisp green apple juice with apple slices and mint leaves" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Green Apple</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c51f2c16-cfae-4382-916c-88cb8ee98434.png" alt="Tropical blue lagoon juice with blue color and citrus slices" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Blue Lagoon</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/459a6d95-bcd7-409e-bc2a-e3b7d9e1f1ce.png" alt="Bubble tea with tapioca pearls and milk tea in a sealed cup" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Bubble Tea</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/84db0710-21da-4c94-9e04-b34871c06490.png" alt="Dark blackberry juice with fresh blackberries and lemon slice" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Black Berry</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ad5abb15-79fa-4581-af85-c0dbddbf934a.png" alt="Mixed berry juice with strawberries, blueberries, and raspberries" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Mix Berry</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/05380015-1d8c-43c7-aa00-69808d3b03ec.png" alt="Spicy lemon masala juice with masala spices and lemon slices" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Lemon Masala</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7219a935-7489-44db-86f6-11e1a312b1a9.png" alt="Golden apple juice with apple slices and cinnamon stick" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Golden Apple</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/adeadc3f-b321-4c58-b6e9-889e90dfac5e.png" alt="Refreshing lemon lime juice with citrus slices and mint" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Lemon Lime</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/df2b0f7b-bb23-409b-8404-dd7d9df7198f.png" alt="Exotic lychee juice with lychee fruits and rose petals" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Lychee</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ed2095e-47bf-4c06-9b7c-77a13b4842ac.png" alt="Traditional alu bukhara plum juice with plum fruits and spices" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Alu Bukhara</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8aa6aa8d-815b-49ba-8e2f-ab590cf33215.png" alt="Tangy imli tamarind juice with tamarind pulp and spices" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Imli</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d171dbb0-8f3d-402f-9713-71c18470b9f4.png" alt="Creamy pakola milk with green color and nuts garnish" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Pakola Milk</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1775f7de-683f-42b6-8b41-dfd17df585f9.png" alt="Delicate rose milk with rose petals and pink color" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Rose Milk</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+
+                <div class="juice-card rounded-lg overflow-hidden">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e522c4b3-052e-47f3-b1f6-61f9e11b9758.png" alt="Rich chocolate milk with chocolate syrup and cream topping" class="w-full flavor-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Chocolate Milk</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-300">Small: Rs. 70</span>
+                            <span class="text-green-400 font-bold">Medium: Rs. 100</span>
+                        </div>
+                        <button class="order-btn w-full py-2 rounded-lg text-white font-semibold">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black bg-opacity-60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 section-title">Contact Us</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-green-300">Get In Touch</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-400 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Address</h4>
+                                <p class="text-gray-200">Sindh Khairpur</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-green-400 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Phone</h4>
+                                <p class="text-gray-200">Muhammad Bilal: 03047560225</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-green-400 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Opening Hours</h4>
+                                <p class="text-gray-200">10:00 AM - 12:00 AM (Daily)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fab fa-tiktok text-green-400 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg">Follow Us</h4>
+                                <p class="text-gray-200">@sardarlimca.kpk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-green-300">Order Form</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-200 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-200 mb-2">Phone Number</label>
+                            <input type="tel" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-200 mb-2">Flavor</label>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400">
+                                <option value="">Select a flavor</option>
+                                <option value="cocktail">Cocktail</option>
+                                <option value="mint-margarita">Mint Margarita</option>
+                                <option value="strawberry">Strawberry</option>
+                                <option value="blueberry">Blueberry</option>
+                                <option value="pineapple">Pineapple</option>
+                                <option value="bubble-gum">Bubble Gum</option>
+                                <option value="orange">Orange</option>
+                                <option value="green-apple">Green Apple</option>
+                                <option value="blue-lagoon">Blue Lagoon</option>
+                                <option value="bubble-tea">Bubble Tea</option>
+                                <option value="black-berry">Black Berry</option>
+                                <option value="mix-berry">Mix Berry</option>
+                                <option value="lemon-masala">Lemon Masala</option>
+                                <option value="golden-apple">Golden Apple</option>
+                                <option value="lemon-lime">Lemon Lime</option>
+                                <option value="lychee">Lychee</option>
+                                <option value="alu-bukhara">Alu Bukhara</option>
+                                <option value="imli">Imli</option>
+                                <option value="pakola-milk">Pakola Milk</option>
+                                <option value="rose-milk">Rose Milk</option>
+                                <option value="chocolate-milk">Chocolate Milk</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-200 mb-2">Size</label>
+                                <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400">
+                                    <option value="small">Small (Rs. 70)</option>
+                                    <option value="medium">Medium (Rs. 100)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-200 mb-2">Quantity</label>
+                                <input type="number" min="1" value="1" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-green-400">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-200 mb-2">Special Instructions</label>
+                            <textarea rows="3" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="whatsapp-btn w-full py-3 rounded-lg text-white font-semibold text-lg">
+                            <i class="fab fa-whatsapp mr-2"></i>Order via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 bg-opacity-90 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9b0bda25-d8eb-4177-934d-99a66524acba.png" alt="Sardar Limca Logo - Modern juice bar logo with fresh fruit elements" class="h-10 w-10 rounded-full mx-auto md:mx-0">
+                </div>
+                
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-green-200">© 2024 Sardar Limca. All rights reserved.</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-green-200 hover:text-white">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                    <a href="#" class="text-green-200 hover:text-white">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-green-200 hover:text-white">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923047560225" class="floating-whatsapp whatsapp-btn w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Order form handling
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.juice-card');
+                const flavor = card.querySelector('h3').textContent;
+                
+                // Scroll to contact form and
